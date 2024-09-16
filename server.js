@@ -20,7 +20,7 @@ const messageSchema = new mongoose.Schema({
     timestamp: { type: Date, default: Date.now }
 });
 
-const Message = mongoose.model('message', messageSchema);
+const Message = mongoose.model('messages', messageSchema);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
