@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 
-mongoose.connect('mongodb+srv://adithya29725:adithya2005@cluster.z0bjk.mongodb.net/chat?retryWrites=true&w=majority&appName=cluster')
+mongoose.connect('mongodb+srv://adithya29725:adithya2005@cluster.vywbw.mongodb.net/chat?retryWrites=true&w=majority&appName=cluster')
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
@@ -28,7 +28,6 @@ io.on('connection', (socket) => {
     console.log('user connected');
  
     Message.find()
-        // .sort({ timestamp: 1 })
         .then((messages) => {
             socket.emit('load messages', messages);
         })
