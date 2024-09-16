@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 
-mongoose.connect('mongodb://localhost:27017/chatapp')
+mongoose.connect('mongodb+srv://adithya29725:adithya2005@cluster.z0bjk.mongodb.net/chat?retryWrites=true&w=majority&appName=cluster')
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
