@@ -3,13 +3,14 @@ const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+const MONGOURL = process.env.MONGO_URL;
 
-
-mongoose.connect('mongodb+srv://adithya29725:adithya2005@cluster.vywbw.mongodb.net/chat?retryWrites=true&w=majority')
+mongoose.connect(MONGOURL)
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
