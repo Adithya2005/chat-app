@@ -25,7 +25,7 @@ const Message = mongoose.model('messages', messageSchema);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-io.on('connection', (socket) => {
+io.on('connection', async(socket) => {
     console.log('user connected');
  
     Message.find()
@@ -54,7 +54,6 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 });
-
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
