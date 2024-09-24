@@ -3,159 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App</title>
+    <title>Main Page</title>
     <style>
         body {
+            background-image: url("bg.jpg");
+            background-size: cover;
+            background-position: center;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
             height: 100vh;
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
+            font-family: Arial, sans-serif;
         }
         h1 {
+            color: aliceblue;
+            margin-bottom: 20px;
+            font-size: 3rem; /* Responsive font size */
             text-align: center;
-            color: #333;
-            padding: 20px;
-            background-color: #007bff;
-            color: white;
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        #chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color:wheat
-        }
-        #message {
-            list-style-type: none;
-            margin: 0;
-            padding: 10px;
-            height: 100%;
-            overflow-y: auto;
-            background-color:whitesmoke;
-            border: 1px solid #ddd;
-            flex-grow: 1;
-            font-style: italic;
-        }
-        #message li {
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 5px;
-            color: #333;
-            max-width: 60%;
-            display: inline-block;
-            word-wrap: break-word;
-        }
-        #message .user-message {
-            background-color: #007bff;
-            color: white;
-            margin-left: auto;
-            display: grid;
-            width: fit-content;
-            
-        }
-        #message .other-message {
-            background-color: #f1f1f1;
-            display: grid;
-            margin-right: auto;
-            width: fit-content;
-        }
-        #form-container{
-            display: flex;
-            padding: 10px;
-            background-color: #007bff;
-            border-top: 1px solid #ddd;
-        }
-        #input {
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #007bff;
-            border-radius: 5px;
-            margin-right: 50px;
         }
         button {
-            padding: 10px;
-            background-color: #28a745;
+            padding: 10px 20px;
+            font-size: 1.2rem; /* Responsive font size */
+            background-color: #007bff;
             color: white;
-            font-size: 16px;
+            border: none;
             border-radius: 5px;
+            margin: 10px;
             cursor: pointer;
-            min-width: 60px;
+        }
+        button a {
+            color: white;
+            text-decoration: none;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem; /* Adjust font size on smaller screens */
+            }
+            button {
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
 <body>
+
     <h1>Chat App</h1>
-    <div id="chat-container">
-        <ul id="message">
-            <li class="other-message"></li>
-        </ul>
-        <div id="form-container">
-            <input id="input" autocomplete="off" placeholder="Type Your Message">
-            <button type="submit" id="send-button">Send</button>
-        </div>
-    </div>
+    <button><a href="login.html">Login</a></button>
+    <button><a href="register.html">Register</a></button>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io(); 
-        const form = document.getElementById('form-container');
-        const input = document.getElementById('input');
-        const messageList = document.getElementById('message');
-        const sendButton = document.getElementById('send-button');
-
-        const userId = Math.random().toString(36).substr(2, 9);
-
-        sendButton.addEventListener('click', function(e) {
-            e.preventDefault(); 
-            sendMessage();
-        });
-
-        input.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-
-        function sendMessage() {
-            const message = input.value.trim();
-            if (message) {
-                socket.emit('chat message', { userId, message });
-                input.value = ''; 
-            }
-        }
-
-        socket.on('load messages', function(messages) {
-            messages.forEach((data) => {
-                appendMessage(data);
-            });
-        });
-
-        socket.on('chat message', function(data) {
-            appendMessage(data);
-        });
-
-        function appendMessage(data) {
-            const item = document.createElement('li');
-            item.textContent = data.message;
-
-            if (data.userId === userId) {
-                item.classList.add('user-message');
-            } else {
-                item.classList.add('other-message');
-            }
-
-            messageList.appendChild(item); 
-            messageList.scrollTop = messageList.scrollHeight; 
-        }
-    </script>
 </body>
 </html>

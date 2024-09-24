@@ -1,12 +1,14 @@
 {
   "dependencies": {
+    "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
     "mongoose": "^8.6.0",
     "nodejs": "^0.0.0",
-    "nodemon": "^3.1.4",
+    "nodemon": "^3.1.7",
     "path": "^0.12.7",
     "socket.io": "^4.7.5"
   },
@@ -19,7 +21,6 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
   "keywords": [],
   "description": ""
 }
